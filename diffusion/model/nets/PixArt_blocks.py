@@ -14,6 +14,8 @@ import torch.nn as nn
 from timm.models.vision_transformer import Mlp, Attention as Attention_
 from einops import rearrange, repeat
 import xformers.ops
+from visualizer import get_local
+
 
 from diffusion.model.utils import add_decomposed_rel_pos
 
@@ -41,6 +43,7 @@ class MultiHeadCrossAttention(nn.Module):
         self.proj = nn.Linear(d_model, d_model)
         self.proj_drop = nn.Dropout(proj_drop)
 
+    @get_local('attention_map')
     def forward(self, x, cond, mask=None):
         # query/value: img tokens; key: condition; mask: if padding tokens
         B, N, C = x.shape
