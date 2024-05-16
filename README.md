@@ -279,11 +279,6 @@ You can also click [here](https://colab.research.google.com/drive/1jZ5UZXk7tcpTf
 python tools/convert_pixart_alpha_to_diffusers.py --image_size your_img_size --multi_scale_train (True if you use PixArtMS else False) --orig_ckpt_path path/to/pth --dump_path path/to/diffusers --only_transformer=True
 ```
 
-
-## 3. Online Demo [![Hugging Face PixArt](https://img.shields.io/static/v1?label=Demo&message=HuggingFace%20Gradio&color=orange)](https://huggingface.co/spaces/PixArt-alpha/PixArt-alpha) 
-![Online Demo sample](asset/images/sample.png)
-
-
 # ✏️ How to extract T5 and VAE features
 
 Prepare T5 text feature and VAE image feature in advance will speed up the training process and save GPU memory.
