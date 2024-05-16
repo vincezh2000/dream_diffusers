@@ -38,9 +38,6 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
 * [Data Processing](#-how-to-extract-t5-and-vae-features)
 * [PixArt-**α** Demo](#3---gradio-with-diffusers--faster-)
 * [PixArt-**α** 8GB VRAM](asset/docs/pixart.md)
-* [PixArt-**δ** (LCM)](asset/docs/pixart_lcm.md)
-* [PixArt-**δ** (ControlNet)](asset/docs/pixart_controlnet.md)
-* [PixArt-**δ** (Dreambooth)](asset/docs/pixart-dreambooth.md)
 * [Acknowledgement](#acknowledgements)
 * [Citation](#bibtex)
 
@@ -48,67 +45,6 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
 * [PixArt-**Σ** Releasing](https://github.com/PixArt-alpha/PixArt-sigma)
 
 ---
-
-## 🐱 Abstract
-<b>TL; DR: <font color="red">PixArt-α</font> is a Transformer-based T2I diffusion model whose image generation quality is competitive with state-of-the-art image generators (e.g., Imagen, SDXL, and even Midjourney), and the training speed markedly surpasses existing large-scale T2I models, e.g., PixArt-α only takes 10.8% of Stable Diffusion v1.5's training time (675 vs. 6,250 A100 GPU days).</b>
-
-<details><summary>CLICK for the full abstract</summary>
-The most advanced text-to-image (T2I) models require significant training costs (e.g., millions of GPU hours), 
-seriously hindering the fundamental innovation for the AIGC community while increasing CO2 emissions. 
-This paper introduces PixArt-α, a Transformer-based T2I diffusion model whose image generation quality is competitive with state-of-the-art image generators (e.g., Imagen, SDXL, and even Midjourney), 
-reaching near-commercial application standards. Additionally, it supports high-resolution image synthesis up to 1024px resolution with low training cost. 
-To achieve this goal, three core designs are proposed: 
-(1) Training strategy decomposition: We devise three distinct training steps that separately optimize pixel dependency, text-image alignment, and image aesthetic quality; 
-(2) Efficient T2I Transformer: We incorporate cross-attention modules into Diffusion Transformer (DiT) to inject text conditions and streamline the computation-intensive class-condition branch; 
-(3) High-informative data: We emphasize the significance of concept density in text-image pairs and leverage a large Vision-Language model to auto-label dense pseudo-captions to assist text-image alignment learning. 
-As a result, PixArt-α's training speed markedly surpasses existing large-scale T2I models, 
-e.g., PixArt-α only takes 10.8% of Stable Diffusion v1.5's training time (675 vs. 6,250 A100 GPU days), 
-saving nearly $300,000 ($26,000 vs. $320,000) and reducing 90% CO2 emissions. Moreover, compared with a larger SOTA model, RAPHAEL, 
-our training cost is merely 1%. Extensive experiments demonstrate that PixArt-α excels in image quality, artistry, and semantic control. 
-We hope PixArt-α will provide new insights to the AIGC community and startups to accelerate building their own high-quality yet low-cost generative models from scratch.
-</details>
-
----
-
-![A small cactus with a happy face in the Sahara desert.](asset/images/teaser.png)
-
----
-
-# 🔥🔥🔥 Why PixArt-α? 
-## Training Efficiency
-PixArt-α only takes 12% of Stable Diffusion v1.5's training time (753 vs. 6,250 A100 GPU days), saving nearly $300,000 ($28,000 vs. $320,000) and reducing 90% CO2 emissions. Moreover, compared with a larger SOTA model, RAPHAEL, our training cost is merely 1%.
-![Training Efficiency.](asset/images/efficiency.png)
-
-| Method    | Type | #Params | #Images| FID-30K ↓        | A100 GPU days |
-|-----------|------|---------|--------|------------------|---------------|
-| DALL·E    | Diff | 12.0B   | 250M   | 27.50            |               |
-| GLIDE     | Diff | 5.0B    | 250M   | 12.24            |               |
-| LDM       | Diff | 1.4B    | 400M   | 12.64            |               |
-| DALL·E 2  | Diff | 6.5B    | 650M   | 10.39            | 41,66         |
-| SDv1.5    | Diff | 0.9B    | 2000M  | 9.62             | 6,250         |
-| GigaGAN   | GAN  | 0.9B    | 2700M  | 9.09             | 4,783         |
-| Imagen    | Diff | 3.0B    | 860M   | 7.27             | 7,132         |
-| RAPHAEL   | Diff | 3.0B    | 5000M+ | 6.61             | 60,000        |
-| PixArt-α  | Diff | 0.6B    | 25M    | 7.32 (zero-shot) | 753           |
-| PixArt-α  | Diff | 0.6B    | 25M    | 5.51 (COCO FT)   | 753           |
-
-## Inference Efficiency
-PIXART-δ successfully generates **1024x1024 high resolution** images within **0.5 seconds** on an A100. With the implementation
-of 8-bit inference technology, PIXART-δ requires **less than 8GB of GPU VRAM**. 
-
-Let us stress again how liberating it is to explore image generation so easily with PixArt-LCM.
-
-| Hardware                    | PIXART-δ (4 steps) | SDXL LoRA LCM (4 steps) | PixArt-α (14 steps) | SDXL standard (25 steps) |
-|-----------------------------|--------------------|-------------------------|---------------------|---------------------------|
-| T4 (Google Colab Free Tier) | 3.3s               | 8.4s                    | 16.0s               | 26.5s                     |
-| V100 (32 GB)                | 0.8s               | 1.2s                    | 5.5s                | 7.7s                      |
-| A100 (80 GB)                | 0.51s              | 1.2s                    | 2.2s                | 3.8s                      |
-
-These tests were run with a batch size of 1 in all cases.
-
-For cards with a lot of capacity, such as A100, performance increases significantly when generating multiple images at once, which is usually the case for production workloads.
-
-## High-quality Generation from PixArt-α
 
 - More samples
 <div id="more-samples" style="display: flex; justify-content: center;">
@@ -140,6 +76,13 @@ pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https
 git clone https://github.com/PixArt-alpha/PixArt-alpha.git
 cd PixArt-alpha
 pip install -r requirements.txt
+
+# Using hook to get attention map
+pip install bytecode
+python setup.py install
+
+# For visualize attention map
+pip install visualize==0.5.0
 ```
 
 # ⏬ Download Models
