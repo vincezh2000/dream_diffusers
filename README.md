@@ -26,7 +26,7 @@
 
 ---
 
-This repo contains PyTorch model definitions, pre-trained weights and inference/sampling code for pixel-art and also contains our code in the scirpt folder.
+This repo contains PyTorch model definitions, pre-trained weights and inference/sampling code for pixel-art and also contains our dream diffuser code in the scirpt folder.
 
 ---
 
