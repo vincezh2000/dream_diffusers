@@ -42,28 +42,6 @@ This repo contains PyTorch model definitions, pre-trained weights and inference/
 * [Citation](#bibtex)
 
 
-* [PixArt-**Σ** Releasing](https://github.com/PixArt-alpha/PixArt-sigma)
-
----
-
-- More samples
-<div id="more-samples" style="display: flex; justify-content: center;">
-  <img src="asset/images/more-samples1.png" style="width: 50%; height: auto; object-fit: contain; margin: 5px;">
-  <img src="asset/images/more-samples.png" style="width: 43%; height: auto; object-fit: contain; margin: 5px;">
-</div>
-
-- PixArt + [Dreambooth](https://dreambooth.github.io/)
-<div id="dreambooth" style="display: flex; justify-content: center;">
-  <img src="asset/images/dreambooth/dreambooth_dog.svg" width="46%" style="margin: 5px;">
-  <img src="asset/images/dreambooth/dreambooth_m5.svg" width="46%" style="margin: 5px;">
-</div>
-
-- PixArt + [ControlNet](https://github.com/lllyasviel/ControlNet)
-<div id="ControlNet" style="display: flex; justify-content: center;">
-  <img src="asset/images/controlnet/controlnet_huawei.svg" width="46%" style="margin: 5px;">
-  <img src="asset/images/controlnet/controlnet_lenna.svg" width="46%" style="margin: 5px;">
-</div>
-
 # 🔧 Dependencies and Installation
 
 - Python >= 3.9 (Recommend to use [Anaconda](https://www.anaconda.com/download/#linux) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html))
@@ -327,33 +305,6 @@ python tools/extract_features.py --img_size=1024 \
     --dataset_root "data/SA1B/Images/"
 ```
 
-## 💪To-Do List (Congratulations🎉)
-
-- [x] Inference code
-- [x] Training code
-- [x] T5 & VAE feature extraction code
-- [x] LLaVA captioning code
-- [x] Model zoo 
-- [x] Diffusers version & Hugging Face demo
-- [x] Google Colab example
-- [x] DALLE3 VAE integration
-- [x] Inference under 8GB GPU VRAM with diffusers
-- [x] Dreambooth Training code
-- [x] SA-Solver code
-- [x] PixArt-α-LCM will release soon
-- [x] Multi-scale vae feature extraction code
-- [x] PixArt-α-LCM-LoRA scripts will release soon
-- [x] PixArt-α-LoRA training scripts will release soon
-- [x] ControlNet code will be released
-- [x] SAM-LLaVA caption dataset
-- [x] ControlNet checkpoint
-- [x] 256px pre-trained models
-- [x] PixArt-Σ: Next version model with much better ability is training!
-
-# Other Source
-We make a video comparing PixArt with current most powerful Text-to-Image models.
-
-[![Watch the video](https://img.youtube.com/vi/7_6KsIITgWY/maxresdefault.jpg)](https://www.youtube.com/watch?v=7_6KsIITgWY)
 
 # 📖BibTeX
     @misc{chen2023pixartalpha,
