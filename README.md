@@ -283,15 +283,6 @@ python tools/convert_pixart_alpha_to_diffusers.py --image_size your_img_size --m
 ## 3. Online Demo [![Hugging Face PixArt](https://img.shields.io/static/v1?label=Demo&message=HuggingFace%20Gradio&color=orange)](https://huggingface.co/spaces/PixArt-alpha/PixArt-alpha) 
 ![Online Demo sample](asset/images/sample.png)
 
-# ✏️ How to LLaVA captioning
-Thanks to the code base of [LLaVA-Lightning-MPT](https://huggingface.co/liuhaotian/LLaVA-Lightning-MPT-7B-preview), 
-we can caption the LAION and SAM dataset with the following launching code:
-```bash
-python tools/VLM_caption_lightning.py --output output/dir/ --data-root data/root/path --index path/to/data.json
-```
-We present auto-labeling with custom prompts for LAION (left) and SAM (right). The words highlighted in green represent the original caption in LAION, while those marked in red indicate the detailed captions labeled by LLaVA.
-
-![Dialog with LLaVA.](asset/images/LLaVA-dialog.png)
 
 # ✏️ How to extract T5 and VAE features
 
